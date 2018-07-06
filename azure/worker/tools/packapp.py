@@ -116,15 +116,17 @@ def find_and_build_deps(args):
                 for dn in paths.values():
                     os.makedirs(dn, exist_ok=True)
 
+                # print(paths, maker)
                 wheel.install(paths, maker)
 
-            with zipfile.ZipFile(args.output, 'w', zipfile.ZIP_DEFLATED) as zf:
-                for root, dirs, files in os.walk(venv):
-                    for file in files:
-                        src = os.path.join(root, file)
-                        rpath = os.path.relpath(src, venv)
-                        arcpath = 'worker_venv/' + rpath
-                        zf.write(src, arcpath)
+            for root, dirs, files in os.walk(venv):
+                for file in files:
+                    src = os.path.join(root, file)
+                    rpath = app_path / '.python_packages/' / \
+                        os.path.relpath(src, venv)
+                    dir_name, _ = os.path.split(rpath)
+                    os.makedirs(dir_name, exist_ok=True)
+                    shutil.copyfile(src, rpath)
 
 
 def ensure_wheel(name, version, args, dest):
@@ -186,9 +188,6 @@ def parse_args(argv):
     parser.add_argument('--platform', type=str)
     parser.add_argument('--python-version', type=str)
     parser.add_argument('--no-deps', default=False, action='store_true')
-    parser.add_argument('--output', type=str, metavar='DIR',
-                        help='The name of the output file.  '
-                             'Defaults to ./app.zip')
     parser.add_argument('path', type=str,
                         help='Path to a function app to pack.')
 
@@ -199,11 +198,9 @@ def parse_args(argv):
     if not args.python_version:
         die('missing required argument: --python-version')
 
-    if not args.output:
-        args.output = os.path.join(os.getcwd(), 'app.zip')
-
     return args
 
 
 if __name__ == '__main__':
     main()
+
