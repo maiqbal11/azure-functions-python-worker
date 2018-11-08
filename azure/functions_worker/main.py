@@ -16,7 +16,7 @@ def parse_args():
     parser.add_argument('--port', type=int)
     parser.add_argument('--workerId', dest='worker_id')
     parser.add_argument('--requestId', dest='request_id')
-    parser.add_argument('--log-level', type=str, default='INFO',
+    parser.add_argument('--log-level', type=str, default='TRACE',
                         choices=['TRACE', 'INFO', 'WARNING', 'ERROR'],)
     parser.add_argument('--log-to', type=str, default='stderr',
                         help='log destination: stdout, stderr, '
@@ -33,6 +33,9 @@ def main():
     logger.info('Starting Azure Functions Python Worker.')
     logger.info('Worker ID: %s, Request ID: %s, Host Address: %s:%s',
                 args.worker_id, args.request_id, args.host, args.port)
+
+    with open("myfile.txt", "a") as f:
+        f.write('Starting Azure Functions Python Worker')
 
     try:
         return aio_compat.run(start_async(
