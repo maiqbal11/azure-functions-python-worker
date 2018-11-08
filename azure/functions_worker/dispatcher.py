@@ -197,7 +197,7 @@ class Dispatcher(metaclass=DispatcherMeta):
     async def _handle__worker_init_request(self, req):
         logger.debug('Received WorkerInitRequest, request ID %s',
                      self.request_id)
-        with open("myfile.txt", "a") as f:
+        with open("/myfile.txt", "a") as f:
             f.write('Received WorkerInitRequest, request ID')
 
         return protos.StreamingMessage(
@@ -212,7 +212,7 @@ class Dispatcher(metaclass=DispatcherMeta):
 
         logger.debug('Received FunctionLoadRequest, request ID: %s, '
                      'function ID: %s', self.request_id, function_id)
-        with open("myfile.txt", "a") as f:
+        with open("/myfile.txt", "a") as f:
             f.write('Received FunctionLoadRequest')
 
         try:
@@ -228,7 +228,7 @@ class Dispatcher(metaclass=DispatcherMeta):
             logger.debug('Successfully processed FunctionLoadRequest, '
                          'request ID: %s, function ID: %s',
                          self.request_id, function_id)
-            with open("myfile.txt", "a") as f:
+            with open("/myfile.txt", "a") as f:
                 f.write('Successfully processed FunctionLoadRequest')
 
             return protos.StreamingMessage(
@@ -262,7 +262,7 @@ class Dispatcher(metaclass=DispatcherMeta):
         logger.debug('Received FunctionInvocationRequest, request ID: %s, '
                      'function ID: %s, invocation ID: %s',
                      self.request_id, function_id, invocation_id)
-        with open("myfile.txt", "a") as f:
+        with open("/myfile.txt", "a") as f:
             f.write('Received FunctionInvocationRequest')
 
         try:
@@ -329,7 +329,7 @@ class Dispatcher(metaclass=DispatcherMeta):
             logger.debug('Successfully processed FunctionInvocationRequest, '
                          'request ID: %s, function ID: %s, invocation ID: %s',
                          self.request_id, function_id, invocation_id)
-            with open("myfile.txt", "a") as f:
+            with open("/myfile.txt", "a") as f:
                 f.write('Successfully processed FunctionInvocationRequest')
 
             return protos.StreamingMessage(

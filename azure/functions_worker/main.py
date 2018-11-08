@@ -34,7 +34,7 @@ def main():
     logger.info('Worker ID: %s, Request ID: %s, Host Address: %s:%s',
                 args.worker_id, args.request_id, args.host, args.port)
 
-    with open("myfile.txt", "a") as f:
+    with open("/myfile.txt", "a") as f:
         f.write('Starting Azure Functions Python Worker')
 
     try:
