@@ -2,6 +2,9 @@ trigger:
 - dev
 - master
 
+pr:
+- azure-pipelines-test 
+
 variables:
     DOTNET_VERSION: '2.1.402'
 
