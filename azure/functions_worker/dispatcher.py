@@ -352,16 +352,18 @@ class Dispatcher(metaclass=DispatcherMeta):
             for var in env_vars:
                 os.environ[var] = env_vars[var]
             
+            logger.info("Protos file location %s", protos.__file__)
+
             return protos.StreamingMessage(
                 request_id=self.request_id,
-                function_environment_reload_response=protos.FunctionEnvironmentReloadRequest(
+                function_environment_reload_response=protos.FunctionEnvironmentReloadResponse(
                     result=protos.StatusResult(
                         status = protos.StatusResult.Success)))
         
         except Exception as ex:
             return protos.StreamingMessage(
                 request_id=self.request_id,
-                function_environment_reload_response=protos.FunctionEnvironmentReloadRequest(
+                function_environment_reload_response=protos.FunctionEnvironmentReloadResponse(
                     result=protos.StatusResult(
                         status = protos.StatusResult.Failure,
                         exception=self._serialize_exception(ex))))
