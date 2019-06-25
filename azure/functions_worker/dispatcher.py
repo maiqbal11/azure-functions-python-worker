@@ -10,6 +10,8 @@ import queue
 import threading
 import traceback
 import os
+import pathlib
+import sys
 
 import grpc
 import pkg_resources
@@ -364,6 +366,9 @@ class Dispatcher(metaclass=DispatcherMeta):
 
             func_env_reload_request = req.function_environment_reload_request
 
+            if sys.platform == "linux":
+                self._setup_user_pkg_paths()
+
             os.environ.clear()
 
             env_vars = func_env_reload_request.environment_variables
@@ -388,6 +393,13 @@ class Dispatcher(metaclass=DispatcherMeta):
             return protos.StreamingMessage(
                 request_id=self.request_id,
                 function_environment_reload_response=failure_response)
+
+    def _setup_user_pkg_paths(self):
+        for pkg_path in constants.USER_PKGS:
+            home_dir = pathlib.Path.home()
+            full_pkg_path = os.path.join(home_dir, pkg_path)
+            # user packages receive precedence
+            sys.path.insert(0, full_pkg_path)
 
     def __run_sync_func(self, invocation_id, func, params):
         # This helper exists because we need to access the current
