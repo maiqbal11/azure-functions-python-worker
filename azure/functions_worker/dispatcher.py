@@ -371,19 +371,31 @@ class Dispatcher(metaclass=DispatcherMeta):
             # for var in env_vars:
             #     os.environ[var] = env_vars[var]
 
+            logger.info('Constructing success FunctionEnvironmentReloadResponse, '
+                        'request ID: %s', self.request_id)
+
             success_response = protos.FunctionEnvironmentReloadResponse(
                 result=protos.StatusResult(
                     status=protos.StatusResult.Success))
+
+            logger.info('Sending success FunctionEnvironmentReloadResponse, '
+                        'request ID: %s', self.request_id)
 
             return protos.StreamingMessage(
                 request_id=self.request_id,
                 function_environment_reload_response=success_response)
 
         except Exception as ex:
+            logger.info('Constructing failed FunctionEnvironmentReloadResponse, '
+                        'request ID: %s', self.request_id)
+
             failure_response = protos.FunctionEnvironmentReloadResponse(
                 result=protos.StatusResult(
                     status=protos.StatusResult.Failure,
                     exception=self._serialize_exception(ex)))
+
+            logger.info('Sending failed FunctionEnvironmentReloadResponse, '
+                        'request ID: %s', self.request_id)
 
             return protos.StreamingMessage(
                 request_id=self.request_id,
