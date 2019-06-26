@@ -362,14 +362,14 @@ class Dispatcher(metaclass=DispatcherMeta):
             logger.info('Received FunctionEnvironmentReloadRequest, '
                         'request ID: %s', self.request_id)
 
-            func_env_reload_request = req.function_environment_reload_request
+            # func_env_reload_request = req.function_environment_reload_request
 
-            os.environ.clear()
+            # os.environ.clear()
 
-            env_vars = func_env_reload_request.environment_variables
+            # env_vars = func_env_reload_request.environment_variables
 
-            for var in env_vars:
-                os.environ[var] = env_vars[var]
+            # for var in env_vars:
+            #     os.environ[var] = env_vars[var]
 
             success_response = protos.FunctionEnvironmentReloadResponse(
                 result=protos.StatusResult(
