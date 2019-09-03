@@ -7,7 +7,6 @@
       "name": "events",
       "direction": "in",
       "cardinality": "many",
-      "dataType": "string",
       "eventHubName": "python-worker-ci-eventhub-batch",
       "connection": "AzureWebJobsEventHubConnectionString"
     },
