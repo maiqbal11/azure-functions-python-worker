@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Microsoft.Azure.Functions.PythonWorkerRunEnvironments</id>
-    <version>1.0.0-beta0</version>
+    <version>1.0.0</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -10,9 +10,15 @@
     <copyright>© .NET Foundation. All rights reserved.</copyright>
   </metadata>
   <files>
-    <file src="..\Windows\**" target="tools\Windows" />
-    <file src="..\Linux\**" target="tools\Linux" />
-    <file src="..\Mac\**" target="tools\Mac" />
+    <file src="..\3.6_WINDOWS_x64\**" target="tools\3.6\WINDOWS\X64" />
+    <file src="..\3.6_WINDOWS_X64\**" target="tools\3.6\WINDOWS\X86" />
+    <file src="..\3.6_LINUX_X64\**" target="tools\3.6\LINUX\X64" />
+    <file src="..\3.6_OSX_X64\**" target="tools\3.6\OSX\X64" />
+    <file src="..\3.7_WINDOWS_X64\**" target="tools\3.7\WINDOWS\X64" />
+    <file src="..\3.7_WINDOWS_X86\**" target="tools\3.7\WINDOWS\X86" />
+    <file src="..\3.7_LINUX_X64\**" target="tools\3.7\LINUX\X64" />
+    <file src="..\3.7_OSX_X64\**" target="tools\3.7\OSX\X64" />
+    <file src="..\python\prod\worker.config.json" target="tools" />
     <file src="Microsoft.Azure.Functions.PythonWorkerRunEnvironments.targets" target="build" />
   </files>
 </package>
