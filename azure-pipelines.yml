@@ -74,8 +74,6 @@ jobs:
     vmImage: 'vs2017-win2016'
   strategy:
     matrix:
-      Python36:
-        pythonVersion: '3.6'
       Python37:
         pythonVersion: '3.7'
   steps:
