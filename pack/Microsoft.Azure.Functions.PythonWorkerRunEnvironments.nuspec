@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>Microsoft.Azure.Functions.PythonWorkerRunEnvironments</id>
+    <id>Microsoft.Azure.Functions.PythonWorker</id>
     <version>1.0.0</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
@@ -19,6 +19,6 @@
     <file src="..\3.7_LINUX_X64\**" target="tools\3.7\LINUX\X64" />
     <file src="..\3.7_OSX_X64\**" target="tools\3.7\OSX\X64" />
     <file src="..\python\prod\worker.config.json" target="tools" />
-    <file src="Microsoft.Azure.Functions.PythonWorkerRunEnvironments.targets" target="build" />
+    <file src="Microsoft.Azure.Functions.PythonWorker.targets" target="build" />
   </files>
 </package>
