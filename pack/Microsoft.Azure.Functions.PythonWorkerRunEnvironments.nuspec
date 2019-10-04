@@ -6,7 +6,7 @@
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Microsoft Azure Functions Python Worker Run Environments</description>
+    <description>Microsoft Azure Functions Python Worker</description>
     <copyright>© .NET Foundation. All rights reserved.</copyright>
   </metadata>
   <files>
