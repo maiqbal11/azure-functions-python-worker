@@ -1,7 +1,7 @@
 {
     "description":{
         "language":"python",
-        "defaultRuntimeVersion":"3.7",
+        "defaultRuntimeVersion":"3.6",
         "supportedOperatingSystems":["LINUX", "OSX", "WINDOWS"],
         "supportedRuntimeVersions":["3.6", "3.7"],
         "supportedArchitectures":["X64", "X86"],
