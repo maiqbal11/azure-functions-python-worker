@@ -1,6 +1,7 @@
 import os
 import sys
 import platform
+import subprocess
 from pathlib import Path
 
 # User packages
@@ -52,10 +53,14 @@ if __name__ == '__main__':
     if platform.system() == 'Windows':
         joined_pkg_paths = ";".join(user_pkg_paths)
         env['PYTHONPATH'] = f'{joined_pkg_paths};{func_worker_dir}'
+        # execve doesn't work in Windows: https://bugs.python.org/issue19124
+        subprocess.run([sys.executable,
+                       '-m', 'azure_functions_worker'] + sys.argv[1:],
+                       env=env)
     else:
         joined_pkg_paths = ":".join(user_pkg_paths)
         env['PYTHONPATH'] = f'{joined_pkg_paths}:{func_worker_dir}'
-
-    os.execve(sys.executable,
-              [sys.executable, '-m', 'azure_functions_worker'] + sys.argv[1:],
-              env)
+        os.execve(sys.executable,
+                  [sys.executable, '-m', 'azure_functions_worker']
+                  + sys.argv[1:],
+                  env)
